@@ -1,4 +1,5 @@
 using Evsell.App.WebApi;
+using Evsell.App.WebApi.Middleware;
 using Evsell.Busssiness.SqlServer.Business;
 using Evsell.Busssiness.SqlServer.Business.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -71,6 +72,7 @@ builder.Services.AddScoped<IProductBusiness, ProductBusiness>();
 builder.Services.AddScoped<IUserBusiness, UserBusiness>();
 //builder.Services.AddScoped<IProductCommentBusiness, ProductCommentBusiness>();
 builder.Services.AddScoped<ICompanyBusiness, CompanyBusiness>();
+builder.Services.AddScoped<ILogHttpBusiness, LogHttpBusiness>();
 //builder.Services.AddScoped<IProductCategoryBusiness, ProdutCategoryBusiness>();
 //builder.Services.AddScoped<IInvoiceBusiness, InvoiceBusiness>();
 
@@ -78,12 +80,25 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true) // allow any origin
+                                        //.WithOrigins("https://localhost:44351")); // Allow only this origin can also have multiple origins separated with comma
+    .AllowCredentials()); // allow credentials
+
+builder.Services.AddCors();
+
+app.UseMiddleware<RequestResponseLogMiddleware>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 
 app.UseAuthentication();
 app.UseAuthorization();
