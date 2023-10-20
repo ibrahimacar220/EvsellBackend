@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{A87E6F9A-3DDA-4F93-9382-B5461F1CDD15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{4149095B-14FB-4D44-B334-1754818E7339}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.App.WebApi", "Evsell.App.WebApi\Evsell.App.WebApi.csproj", "{E5EBE523-1C16-4564-807B-91A8A9DBCE3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Busssiness.SqlServer", "Evsell.Bussiness.SqlServer\Evsell.Busssiness.SqlServer.csproj", "{EA324D6C-82B8-4789-8BE4-911E927E00B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Business.Common", "Evsell.Business.Common\Evsell.Business.Common.csproj", "{5CB779B9-139F-480E-9466-DE48301C8BDF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Business.Email", "Evsell.Business.Email\Evsell.Business.Email.csproj", "{8E4272A2-C21D-4EA5-8B1D-DBC0F2BFFC28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evsell.Business.Shared", "Evsell.Business.Shared\Evsell.Business.Shared.csproj", "{946B74B2-5580-486C-83D3-34BF78655CF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5EBE523-1C16-4564-807B-91A8A9DBCE3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5EBE523-1C16-4564-807B-91A8A9DBCE3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5EBE523-1C16-4564-807B-91A8A9DBCE3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5EBE523-1C16-4564-807B-91A8A9DBCE3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA324D6C-82B8-4789-8BE4-911E927E00B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA324D6C-82B8-4789-8BE4-911E927E00B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA324D6C-82B8-4789-8BE4-911E927E00B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA324D6C-82B8-4789-8BE4-911E927E00B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CB779B9-139F-480E-9466-DE48301C8BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CB779B9-139F-480E-9466-DE48301C8BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CB779B9-139F-480E-9466-DE48301C8BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CB779B9-139F-480E-9466-DE48301C8BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E4272A2-C21D-4EA5-8B1D-DBC0F2BFFC28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E4272A2-C21D-4EA5-8B1D-DBC0F2BFFC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E4272A2-C21D-4EA5-8B1D-DBC0F2BFFC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E4272A2-C21D-4EA5-8B1D-DBC0F2BFFC28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{946B74B2-5580-486C-83D3-34BF78655CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946B74B2-5580-486C-83D3-34BF78655CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946B74B2-5580-486C-83D3-34BF78655CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946B74B2-5580-486C-83D3-34BF78655CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E5EBE523-1C16-4564-807B-91A8A9DBCE3C} = {A87E6F9A-3DDA-4F93-9382-B5461F1CDD15}
+		{EA324D6C-82B8-4789-8BE4-911E927E00B9} = {4149095B-14FB-4D44-B334-1754818E7339}
+		{5CB779B9-139F-480E-9466-DE48301C8BDF} = {4149095B-14FB-4D44-B334-1754818E7339}
+		{8E4272A2-C21D-4EA5-8B1D-DBC0F2BFFC28} = {4149095B-14FB-4D44-B334-1754818E7339}
+		{946B74B2-5580-486C-83D3-34BF78655CF3} = {4149095B-14FB-4D44-B334-1754818E7339}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06C0BAEC-048E-49B0-BE69-1F7C6C7C89ED}
+	EndGlobalSection
+EndGlobal
