@@ -17,7 +17,7 @@ namespace Evsell.App.WebApi.Middleware
 
             logHttpBusiness = new LogHttpBusiness();
         }
-
+        
         public async Task InvokeAsync(HttpContext context)
         {
             DateTime requestDateTime = DateTime.UtcNow;

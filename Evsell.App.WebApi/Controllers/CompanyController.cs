@@ -3,10 +3,8 @@ using Evsell.App.WebApi.Dto.Company;
 using Evsell.Business.Common.Response;
 using Evsell.Busssiness.SqlServer.Bo.Company;
 using Evsell.Busssiness.SqlServer.Business.Interface;
-using Evsell.Busssiness.SqlServer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Evsell.App.WebApi.Controllers
 {

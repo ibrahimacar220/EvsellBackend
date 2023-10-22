@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using Evsell.App.WebApi.Dto.Basket;
 using Evsell.App.WebApi.Dto.Company;
+using Evsell.App.WebApi.Dto.Invoice;
 using Evsell.App.WebApi.Dto.Product;
 using Evsell.App.WebApi.Dto.User;
 using Evsell.Business.Common.Response;
 using Evsell.Busssiness.SqlServer.Bo.Basket;
 using Evsell.Busssiness.SqlServer.Bo.Company;
+using Evsell.Busssiness.SqlServer.Bo.Invoice;
 using Evsell.Busssiness.SqlServer.Bo.Product;
 using Evsell.Busssiness.SqlServer.Bo.User;
 
@@ -56,30 +58,25 @@ namespace Evsell.App.WebApi
             CreateMap<ResponseDto<ProductDto>, ResponseDto<ProductBo>>().ReverseMap();
 
             CreateMap<ProductGetDto,ProductGetBo>().ReverseMap();
-            //CreateMap<ProductStockChangeDto, ProductStockChangeBo>().ReverseMap();
-
-            //CreateMap<ProductDelDto, ProductDelBo>().ReverseMap();
-
-            //CreateMap<ProductGetDto, ProductGetBo>().ReverseMap();
-
-            //CreateMap<ResponseDto<ProductDto>, ResponseDto<ProductBo>>().ReverseMap();
-
-            //CreateMap<ProductGetListDto, ProductGetListBo>().ReverseMap();
-
-            //CreateMap<ResponseDto<ProductGetListDto>, ResponseDto<ProductGetListBo>>().ReverseMap();
-
-            //CreateMap<ProductGetListCriteriaDto, ProductGetListCriteriaBo>().ReverseMap();
-
-            //CreateMap<ResponseDto<List<ProductGetListDto>>, ResponseDto<List<ProductGetListBo>>>().ReverseMap();
-
-            //CreateMap<ProductGetListByIdDto, ProductGetListByIdBo>().ReverseMap();
-
             CreateMap<CompanyGetBo, CompanyGetDto>().ReverseMap();
             CreateMap<CompanyDelBo, CompanyDelDto>().ReverseMap();
             CreateMap<CompanyBo, CompanyDto>().ReverseMap();
             CreateMap<CompanyGetListCriteriaBo, CompanyGetListCriteriaDto>().ReverseMap();
             CreateMap<ResponseDto<List<CompanyBo>>, ResponseDto<List<CompanyDto>>>().ReverseMap();
             CreateMap<ResponseDto<CompanyBo>, ResponseDto<CompanyDto>>().ReverseMap();
+
+            CreateMap<InvoiceSaveCriteriaDto,InvoiceSaveCriteriaBo>().ReverseMap();
+            CreateMap<InvoiceCancelCriteriaDto,InvoiceCancelCriteriaBo>().ReverseMap();
+            CreateMap<ResponseDto<List<InvoiceDto>>, ResponseDto<List<InvoiceBo>>>().ReverseMap();
+            CreateMap<InvoiceGetListCriteriaDto,InvoiceGetListCriteriaBo>().ReverseMap();
+            CreateMap<ResponseDto<List<InvoiceDto>>, ResponseDto<List<InvoiceBo>>>().ReverseMap();
+
+            CreateMap<ResponseDto<List<InvoiceBo>>, ResponseDto<List<InvoiceDto>>>().ReverseMap();
+            CreateMap<InvoiceBo,InvoiceDto>().ReverseMap();
+            CreateMap<InvoiceUpdateStatusCriteriaDto, InvoiceUpdateStatusCriteriaBo>().ReverseMap();
+            CreateMap<InvoiceIsCancelledCriteriaDto, InvoiceIsCancelledCriteriaBo>().ReverseMap();
+            CreateMap<ResponseDto<InvoiceIsCancelledDto>, ResponseDto<InvoiceIsCancelledBo>>().ReverseMap();
+            CreateMap<InvoiceIsCancelledDto, InvoiceIsCancelledBo>().ReverseMap();
         }
     }
 }

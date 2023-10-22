@@ -74,7 +74,7 @@ builder.Services.AddScoped<IUserBusiness, UserBusiness>();
 builder.Services.AddScoped<ICompanyBusiness, CompanyBusiness>();
 builder.Services.AddScoped<ILogHttpBusiness, LogHttpBusiness>();
 //builder.Services.AddScoped<IProductCategoryBusiness, ProdutCategoryBusiness>();
-//builder.Services.AddScoped<IInvoiceBusiness, InvoiceBusiness>();
+builder.Services.AddScoped<IInvoiceBusiness, InvoiceBusiness>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
@@ -89,7 +89,6 @@ app.UseCors(x => x
 
 builder.Services.AddCors();
 
-app.UseMiddleware<RequestResponseLogMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -98,7 +97,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-
+app.UseMiddleware<RequestResponseLogMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();
