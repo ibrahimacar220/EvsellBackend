@@ -3,12 +3,14 @@ using Evsell.App.WebApi.Dto.Basket;
 using Evsell.App.WebApi.Dto.Company;
 using Evsell.App.WebApi.Dto.Invoice;
 using Evsell.App.WebApi.Dto.Product;
+using Evsell.App.WebApi.Dto.ProductComment;
 using Evsell.App.WebApi.Dto.User;
 using Evsell.Business.Common.Response;
 using Evsell.Busssiness.SqlServer.Bo.Basket;
 using Evsell.Busssiness.SqlServer.Bo.Company;
 using Evsell.Busssiness.SqlServer.Bo.Invoice;
 using Evsell.Busssiness.SqlServer.Bo.Product;
+using Evsell.Busssiness.SqlServer.Bo.ProductComment;
 using Evsell.Busssiness.SqlServer.Bo.User;
 
 namespace Evsell.App.WebApi
@@ -77,6 +79,15 @@ namespace Evsell.App.WebApi
             CreateMap<InvoiceIsCancelledCriteriaDto, InvoiceIsCancelledCriteriaBo>().ReverseMap();
             CreateMap<ResponseDto<InvoiceIsCancelledDto>, ResponseDto<InvoiceIsCancelledBo>>().ReverseMap();
             CreateMap<InvoiceIsCancelledDto, InvoiceIsCancelledBo>().ReverseMap();
+
+            CreateMap<ProductCommentDto, ProductCommentBo>().ReverseMap();
+            CreateMap<ProductCommentDelCriteriaDto,ProductCommentDelCriteriaBo>().ReverseMap();
+            CreateMap<ProductCommentGetCriteriaDto,ProductCommentGetCriteriaBo>().ReverseMap();
+            CreateMap<ProductCommentSaveCriteriaDto,ProductCommentSaveCriteriaBo>().ReverseMap();
+            CreateMap<ProductCommentGetListCriteriaDto,ProductCommentGetListCriteriaBo>().ReverseMap();
+            CreateMap<ResponseDto<List<ProductCommentDto>>, ResponseDto<List<ProductCommentBo>>>().ReverseMap();
+            CreateMap<ResponseDto<ProductCommentDto>,ResponseDto<ProductCommentBo>>().ReverseMap();
+
         }
     }
 }

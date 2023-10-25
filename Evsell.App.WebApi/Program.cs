@@ -70,7 +70,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<IBasketBusiness, BasketBusiness>();
 builder.Services.AddScoped<IProductBusiness, ProductBusiness>();
 builder.Services.AddScoped<IUserBusiness, UserBusiness>();
-//builder.Services.AddScoped<IProductCommentBusiness, ProductCommentBusiness>();
+builder.Services.AddScoped<IProductCommentBusiness, ProductCommentBusiness>();
 builder.Services.AddScoped<ICompanyBusiness, CompanyBusiness>();
 builder.Services.AddScoped<ILogHttpBusiness, LogHttpBusiness>();
 //builder.Services.AddScoped<IProductCategoryBusiness, ProdutCategoryBusiness>();

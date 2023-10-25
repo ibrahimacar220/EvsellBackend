@@ -17,7 +17,7 @@ namespace Evsell.App.WebApi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IMapper _mapper;
-        public ProductController(IMapper mapper, IProductBusiness productBusiness)//
+        public ProductController(IMapper mapper, IProductBusiness productBusiness)
         {
             _mapper = mapper;
             _productBusiness = productBusiness;
