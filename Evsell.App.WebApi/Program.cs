@@ -4,6 +4,7 @@ using Evsell.Busssiness.SqlServer.Business;
 using Evsell.Busssiness.SqlServer.Business.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -73,12 +74,14 @@ builder.Services.AddScoped<IUserBusiness, UserBusiness>();
 builder.Services.AddScoped<IProductCommentBusiness, ProductCommentBusiness>();
 builder.Services.AddScoped<ICompanyBusiness, CompanyBusiness>();
 builder.Services.AddScoped<ILogHttpBusiness, LogHttpBusiness>();
-//builder.Services.AddScoped<IProductCategoryBusiness, ProdutCategoryBusiness>();
+builder.Services.AddScoped<IProductCategoryBusiness, ProdutCategoryBusiness>();
 builder.Services.AddScoped<IInvoiceBusiness, InvoiceBusiness>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
+
+CheckAndRunDatabaseScript(app.Configuration, app.Environment);
 
 app.UseCors(x => x
     .AllowAnyMethod()
@@ -105,3 +108,58 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void CheckAndRunDatabaseScript(IConfiguration configuration, IWebHostEnvironment env)
+{
+    string connectionString = configuration.GetConnectionString("DefaultConnection");
+    string databaseName = "evsellDb";
+    using (var connection = new SqlConnection(connectionString))
+    {
+        connection.Open();
+        var command = new SqlCommand("SELECT database_id FROM sys.databases WHERE Name = @DatabaseName", connection);
+        command.Parameters.AddWithValue("@DatabaseName", databaseName);
+        var databaseId = command.ExecuteScalar();
+
+        if (databaseId == null)
+        {
+            RunSqlScript(configuration, env);
+        }
+        // Diðer servis konfigürasyonlarý devam eder
+    }
+}
+
+void RunSqlScript(IConfiguration configuration, IWebHostEnvironment env)
+{
+    string connectionString = configuration.GetConnectionString("DefaultConnection");
+    string contentRootPath = env.ContentRootPath;
+    string folderToRemove = "Evsell.App.WebApi";
+    string modifiedPath = "";
+    if (contentRootPath.EndsWith(folderToRemove))
+    {
+        modifiedPath = contentRootPath.Substring(0, contentRootPath.Length - folderToRemove.Length - 1);
+        // -1, ayraç karakteri (\) için
+        Console.WriteLine(modifiedPath); 
+    }
+
+    string scriptPath = Path.Combine(modifiedPath, "Evsell.Bussiness.SqlServer", "DatabaseScript", "CreateScript.sql");
+
+    if (File.Exists(scriptPath))
+    {
+        string scriptContent = File.ReadAllText(scriptPath);
+        string[] commands = scriptContent.Split(new[] { "GO" }, StringSplitOptions.RemoveEmptyEntries);
+
+        using (var connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+
+            foreach (var commandText in commands)
+            {
+                using (var command = new SqlCommand(commandText, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        // else durumunu ekle, dosya yoksa yapýlacak iþlemler
+    }
+}

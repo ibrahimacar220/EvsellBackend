@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{41
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.App.WebApi", "Evsell.App.WebApi\Evsell.App.WebApi.csproj", "{E5EBE523-1C16-4564-807B-91A8A9DBCE3C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Busssiness.SqlServer", "Evsell.Bussiness.SqlServer\Evsell.Busssiness.SqlServer.csproj", "{EA324D6C-82B8-4789-8BE4-911E927E00B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Business.SqlServer", "Evsell.Bussiness.SqlServer\Evsell.Business.SqlServer.csproj", "{EA324D6C-82B8-4789-8BE4-911E927E00B9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Business.Common", "Evsell.Business.Common\Evsell.Business.Common.csproj", "{5CB779B9-139F-480E-9466-DE48301C8BDF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Business.Email", "Evsell.Business.Email\Evsell.Business.Email.csproj", "{8E4272A2-C21D-4EA5-8B1D-DBC0F2BFFC28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evsell.Business.Shared", "Evsell.Business.Shared\Evsell.Business.Shared.csproj", "{946B74B2-5580-486C-83D3-34BF78655CF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Business.Shared", "Evsell.Business.Shared\Evsell.Business.Shared.csproj", "{946B74B2-5580-486C-83D3-34BF78655CF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

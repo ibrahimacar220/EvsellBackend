@@ -10,59 +10,14 @@ namespace Evsell.App.WebApi.Controllers
     [ApiController]
     public class AuthController : Controller
     {
-      
-            [HttpGet]
-            public string Login(string userName, string password)
-            {
-                //var claims = new[]
-                //{
-                //    new Claim(ClaimTypes.Name,username),
-                //    new Claim(JwtRegisteredClaimNames.Email,username),
-                //    new Claim(ClaimTypes.Upn,password)
-                //};
-                //var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Stc.JwtKey));
-                //var credentials = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256);
-                //var jwtSecurityToken = new JwtSecurityToken(
-                //    issuer: Stc.JwtIssuer,
-                //    audience: null,
-                //    claims: claims,
-                //    expires: DateTime.Now.AddDays(20),
-                //    notBefore: DateTime.Now,
-                //    signingCredentials: credentials
-                //    );
-                //var token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-                //return token;
-                return JwtTokenBuilder.BuildToken(userName);
-            }
-            //[HttpGet("ValidateToken")]
-            //public bool loginController(string token)
-            //{
-            //    var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingkey));
-            //    try
-            //    {
-            //        JwtSecurityTokenHandler handler = new();
-            //        handler.ValidateToken(token, new TokenValidationParameters()
-            //        {
-            //            ValidateIssuerSigningKey = true,
-            //            IssuerSigningKey = securitykey,
-            //            ValidateLifetime = true,
-            //            ValidateAudience = false,
-            //            ValidateIssuer = false,
-            //        }, out SecurityToken validatedToken);
 
-
-            //        var jwtToken = (JwtSecurityToken)validatedToken;
-
-            //        var claims = jwtToken.Claims.ToList();
-            //        return true;
-            //    }
-            //    catch (System.Exception)
-            //    {
-            //        return false;
-            //    }
-
-            //}
+        [HttpGet]
+        public string Login(string userName, string password)
+        {
+            return JwtTokenBuilder.BuildToken(userName);
         }
+
+    }
 
         public class JwtTokenBuilder
         {
