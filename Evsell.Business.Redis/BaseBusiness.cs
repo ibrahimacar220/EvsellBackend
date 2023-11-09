@@ -39,7 +39,6 @@ namespace Evsell.Business.Redis
                 {
                     IDatabase db = redis.GetDatabase();
                     var res = db.StringGet(key);
-
                     redis.Close();
                     if (res.IsNull)
                         return default(T);
@@ -49,6 +48,23 @@ namespace Evsell.Business.Redis
                 catch
                 {
                     return default(T);
+                }
+
+            }
+        }
+        public static void DeleteData(string key)
+        {
+            using (var redis = ConnectionMultiplexer.Connect("localhost:6379"))
+            {
+                try
+                {
+                    IDatabase db = redis.GetDatabase();
+                    db.KeyDelete(key);
+                    redis.Close();
+                }
+                catch
+                {
+                    
                 }
 
             }

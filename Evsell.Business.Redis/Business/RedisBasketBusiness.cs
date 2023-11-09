@@ -32,6 +32,25 @@ namespace Evsell.Business.Redis.Business
 
             List<RedisBasketBo> redisBasketBos = BaseBusiness.GetData<List<RedisBasketBo>>(key);
 
+            var groupedProducts = redisBasketCriteriaBo.InvoiceProductDtos.GroupBy(p => p.productId);
+
+            foreach (var group in groupedProducts)
+            {
+                int newQty = 0;
+
+                if (group.Count() >= 2)
+                {
+                    newQty = group.Sum(basket => basket.qty);
+
+
+                    // deleting product from orginal list
+                    redisBasketCriteriaBo.InvoiceProductDtos.RemoveAll(p => p.productId == group.Key);
+
+                    // add with new qty
+                    redisBasketCriteriaBo.InvoiceProductDtos.Add(new InvoiceProductDto { productId = group.Key, qty = newQty });
+                }
+            }
+
             foreach (var item in redisBasketCriteriaBo.InvoiceProductDtos)
             {
                 if (redisBasketBos != null)
@@ -62,7 +81,7 @@ namespace Evsell.Business.Redis.Business
                 var redisBasketBo = basketDtos.FirstOrDefault(p => p.ProductId == item.productId);
                 redisBasketBo.Qty = item.qty;
             }
-
+            
             BaseBusiness.SetData(key, basketDtos);
 
             return new ResponseDto().Success();
