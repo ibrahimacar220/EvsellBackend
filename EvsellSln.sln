@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Business.Email", "Ev
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evsell.Business.Shared", "Evsell.Business.Shared\Evsell.Business.Shared.csproj", "{946B74B2-5580-486C-83D3-34BF78655CF3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Redis", "Redis", "{CED8FF99-71E6-4394-9FAC-4544AD38C58D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Evsell.Business.Redis", "Evsell.Business.Redis\Evsell.Business.Redis.csproj", "{D37A39A3-53E8-4C2B-B912-1442136C6E2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +47,10 @@ Global
 		{946B74B2-5580-486C-83D3-34BF78655CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{946B74B2-5580-486C-83D3-34BF78655CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{946B74B2-5580-486C-83D3-34BF78655CF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D37A39A3-53E8-4C2B-B912-1442136C6E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D37A39A3-53E8-4C2B-B912-1442136C6E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D37A39A3-53E8-4C2B-B912-1442136C6E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D37A39A3-53E8-4C2B-B912-1442136C6E2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +61,8 @@ Global
 		{5CB779B9-139F-480E-9466-DE48301C8BDF} = {4149095B-14FB-4D44-B334-1754818E7339}
 		{8E4272A2-C21D-4EA5-8B1D-DBC0F2BFFC28} = {4149095B-14FB-4D44-B334-1754818E7339}
 		{946B74B2-5580-486C-83D3-34BF78655CF3} = {4149095B-14FB-4D44-B334-1754818E7339}
+		{CED8FF99-71E6-4394-9FAC-4544AD38C58D} = {4149095B-14FB-4D44-B334-1754818E7339}
+		{D37A39A3-53E8-4C2B-B912-1442136C6E2C} = {CED8FF99-71E6-4394-9FAC-4544AD38C58D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06C0BAEC-048E-49B0-BE69-1F7C6C7C89ED}

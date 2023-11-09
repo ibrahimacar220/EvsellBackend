@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Evsell.Busssiness.SqlServer.Business.Interface
 {
-    public interface IBasketBusiness
+    public interface IBasketBusiness:IDisposable
     {
         public ResponseDto Save(BasketCriteriaBo basketCriteriaBo);
         public ResponseDto<List<BasketBo>> GetBaskets(GetBasketBo getBasketBo);

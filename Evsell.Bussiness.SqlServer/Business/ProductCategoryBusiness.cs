@@ -1,4 +1,5 @@
 ﻿using Evsell.Business.Common.Response;
+using Evsell.Business.SqlServer.Bo.ProductCategory;
 using Evsell.Busssiness.SqlServer.Business.Interface;
 using Evsell.Busssiness.SqlServer.Models;
 using System;
@@ -18,30 +19,46 @@ namespace Evsell.Busssiness.SqlServer.Business
             dbContext = new EvsellDbContext();
         }
 
-        public ResponseDto<List<ProductCategory>> GetList()
+        public ResponseDto<List<ProductCategoryBo>> GetList()
         {
             try
             {
-                List<ProductCategory> productCategory = (from x in dbContext.ProductCategories
+
+                List<ProductCategory> productCategorys = (from x in dbContext.ProductCategories
                                                          select x).ToList();
-                return new ResponseDto<List<ProductCategory>>().Success(productCategory);
+
+                List<ProductCategoryBo> productCategoryBos = new List<ProductCategoryBo>();
+
+                foreach (var item in productCategorys)
+                {
+                    ProductCategoryBo productCategoryBo = new ProductCategoryBo()
+                    {
+                         Id = item.Id,
+                         Name = item.Name,
+                         ParentId = item.ParentId,
+                    };
+                    productCategoryBos.Add(productCategoryBo);
+                }
+                return new ResponseDto<List<ProductCategoryBo>>().Success(productCategoryBos);
             }
             catch (Exception ex)
             {
-                return new ResponseDto<List<ProductCategory>>().FailedWithException(ex);
+                return new ResponseDto<List<ProductCategoryBo>>().FailedWithException(ex);
             }
         }
 
-        public ResponseDto<List<Productcate>> GetListChildren()
+        public ResponseDto<List<ProductCateBo>> GetListChildren()
         {
-            List<ProductCategory> rawList = GetList().Dto;
-            Productcate resultItem = null;
-            List<Productcate> result = new List<Productcate>();
+
+            List<ProductCategoryBo> rawList = GetList().Dto;
+
+            ProductCateBo resultItem = null;
+            List<ProductCateBo> result = new List<ProductCateBo>();
             try
             {
-                foreach (ProductCategory item in rawList.Where(p => p.ParentId == null))
+                foreach (ProductCategoryBo item in rawList.Where(p => p.ParentId == null))
                 {
-                    resultItem = new Productcate()
+                    resultItem = new ProductCateBo()
                     {
                         Id = item.Id,
                         Name = item.Name,
@@ -50,20 +67,21 @@ namespace Evsell.Busssiness.SqlServer.Business
 
                     result.Add(resultItem);
                 }
-                return new ResponseDto<List<Productcate>>().Success(result);
+                return new ResponseDto<List<ProductCateBo>>().Success(result);
             }
             catch (Exception ex)
             {
-                return new ResponseDto<List<Productcate>>().FailedWithException(ex);
+                return new ResponseDto<List<ProductCateBo>>().FailedWithException(ex);
             }
         }
-        List<Productcate> GetListChildItem(int id, List<ProductCategory> rawList)
+
+        List<ProductCateBo> GetListChildItem(int id, List<ProductCategoryBo> rawList)
         {
             try
             {
-                List<Productcate> list = (from x in rawList
+                List<ProductCateBo> list = (from x in rawList
                                           where x.ParentId == id
-                                          select new Productcate()
+                                          select new ProductCateBo()
                                           {
                                               Id = x.Id,
                                               Name = x.Name,
@@ -85,13 +103,5 @@ namespace Evsell.Busssiness.SqlServer.Business
 
             dbContext.Dispose();
         }
-    }
-    public class Productcate
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public List<Productcate> SubList { get; set; }
     }
 }

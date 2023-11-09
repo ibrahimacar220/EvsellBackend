@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="StackExchange.Redis.Extensions.Newtonsoft" Version="9.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Evsell.Business.Common\Evsell.Business.Common.csproj" />
+    <ProjectReference Include="..\Evsell.Bussiness.SqlServer\Evsell.Business.SqlServer.csproj" />
+  </ItemGroup>
+
+</Project>

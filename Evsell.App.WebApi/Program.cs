@@ -1,5 +1,7 @@
 using Evsell.App.WebApi;
 using Evsell.App.WebApi.Middleware;
+using Evsell.Business.Redis.Business;
+using Evsell.Business.Redis.Business.Interface;
 using Evsell.Busssiness.SqlServer.Business;
 using Evsell.Busssiness.SqlServer.Business.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -76,6 +78,7 @@ builder.Services.AddScoped<ICompanyBusiness, CompanyBusiness>();
 builder.Services.AddScoped<ILogHttpBusiness, LogHttpBusiness>();
 builder.Services.AddScoped<IProductCategoryBusiness, ProdutCategoryBusiness>();
 builder.Services.AddScoped<IInvoiceBusiness, InvoiceBusiness>();
+builder.Services.AddScoped<IRedisBasketBusiness,RedisBasketBusiness>();
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
@@ -83,7 +86,7 @@ var app = builder.Build();
 
 CheckAndRunDatabaseScript(app.Configuration, app.Environment);
 
-app.UseCors(x => x
+app.UseCors(x => x  
     .AllowAnyMethod()
     .AllowAnyHeader()
     .SetIsOriginAllowed(origin => true) // allow any origin

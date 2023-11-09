@@ -39,6 +39,14 @@ namespace Evsell.App.WebApi.Controllers
 
         }
 
+        [HttpPost("UpdateStatus")]
+        public ResponseDto UpdateStatus(InvoiceUpdateStatusCriteriaDto invoiceUpdateStatusCriteriaDto)
+        {
+            InvoiceUpdateStatusCriteriaBo invoiceUpdateStatusCriteriaBo = _mapper.Map<InvoiceUpdateStatusCriteriaBo>(invoiceUpdateStatusCriteriaDto);
+
+            return _invoiceBusiness.UpdateStatus(invoiceUpdateStatusCriteriaBo);
+        }
+
         [HttpGet("GetList")]
         public ResponseDto<List<InvoiceDto>> GetList([FromQuery] InvoiceGetListCriteriaDto invoiceGetListCriteriaDto) 
         {
@@ -47,14 +55,6 @@ namespace Evsell.App.WebApi.Controllers
             ResponseDto<List<InvoiceDto>> invoiceDtos = _mapper.Map<ResponseDto<List<InvoiceDto>>>(_invoiceBusiness.GetList(invoiceGetListCriteriaBo));
 
             return invoiceDtos;
-        }
-
-        [HttpPost("UpdateStatus")]
-        public ResponseDto UpdateStatus(InvoiceUpdateStatusCriteriaDto invoiceUpdateStatusCriteriaDto)
-        {
-            InvoiceUpdateStatusCriteriaBo invoiceUpdateStatusCriteriaBo = _mapper.Map<InvoiceUpdateStatusCriteriaBo>(invoiceUpdateStatusCriteriaDto);
-
-            return _invoiceBusiness.UpdateStatus(invoiceUpdateStatusCriteriaBo);
         }
 
         [HttpGet("IsCancelled")]

@@ -3,9 +3,12 @@ using Evsell.App.WebApi.Dto.Basket;
 using Evsell.App.WebApi.Dto.Company;
 using Evsell.App.WebApi.Dto.Invoice;
 using Evsell.App.WebApi.Dto.Product;
+using Evsell.App.WebApi.Dto.ProductCategory;
 using Evsell.App.WebApi.Dto.ProductComment;
 using Evsell.App.WebApi.Dto.User;
 using Evsell.Business.Common.Response;
+using Evsell.Business.Redis.Bo.Basket;
+using Evsell.Business.SqlServer.Bo.ProductCategory;
 using Evsell.Busssiness.SqlServer.Bo.Basket;
 using Evsell.Busssiness.SqlServer.Bo.Company;
 using Evsell.Busssiness.SqlServer.Bo.Invoice;
@@ -88,6 +91,14 @@ namespace Evsell.App.WebApi
             CreateMap<ResponseDto<List<ProductCommentDto>>, ResponseDto<List<ProductCommentBo>>>().ReverseMap();
             CreateMap<ResponseDto<ProductCommentDto>,ResponseDto<ProductCommentBo>>().ReverseMap();
 
+            CreateMap<ResponseDto<List<ProductCategoryDto>>,ResponseDto<List<ProductCategoryBo>>>().ReverseMap();
+            CreateMap<ProductCategoryDto, ProductCategoryBo>().ReverseMap();
+
+            CreateMap<ResponseDto<List<ProductCateDto>>, ResponseDto<List<ProductCateBo>>>().ReverseMap();
+            CreateMap<ProductCateDto, ProductCateBo>().ReverseMap();
+            CreateMap<RedisBasketCriteriaBo, BasketCriteriaDto>().ReverseMap();
+            CreateMap<RedisBasketBo,BasketBo>().ReverseMap();
+            CreateMap<ResponseDto<List<RedisBasketBo>>, ResponseDto<List<BasketBo>>>().ReverseMap();
         }
     }
 }

@@ -133,7 +133,7 @@ namespace Evsell.Busssiness.SqlServer.Business
             dbContext.Baskets.AddRange(basketProductList);
             dbContext.SaveChanges();
 
-            return new ResponseDto().Success();
+            return new ResponseDto().Success(basketCriteriaBo.BuyerId);
         }
 
         public ResponseDto<List<BasketBo>> GetBaskets(GetBasketBo getBasketBo)
@@ -224,6 +224,12 @@ namespace Evsell.Busssiness.SqlServer.Business
                 return new ResponseDto().FailedWithException(ex);
             }
 
+        }
+        public void Dispose()
+        {
+            if (dbContext == null) return;
+
+            dbContext.Dispose();
         }
     }
 }

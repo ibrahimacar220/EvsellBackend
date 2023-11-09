@@ -30,6 +30,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\Evsell.Business.Redis\Evsell.Business.Redis.csproj" />
     <ProjectReference Include="..\Evsell.Bussiness.SqlServer\Evsell.Business.SqlServer.csproj" />
   </ItemGroup>
 
