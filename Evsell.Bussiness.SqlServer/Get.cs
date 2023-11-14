@@ -17,11 +17,11 @@ namespace Evsell.Busssiness.SqlServer
             dbContext = new EvsellDbContext();
         }
 
-        public ResponseDto<Product> GetProduct(int Id)
+        public ResponseDto<Product> GetProduct(int id)
         {
             try
             {
-                Product product = dbContext.Products.Find(Id);
+                Product product = dbContext.Products.Find(id);
 
                 if (product == null)
                 {
@@ -36,11 +36,11 @@ namespace Evsell.Busssiness.SqlServer
             }
         }
 
-        public ResponseDto<User> GetUser(int Id)
+        public ResponseDto<User> GetUser(int id)
         {
             try
             {
-                User user = dbContext.Users.Find(Id);
+                User user = dbContext.Users.Find(id);
 
                 if (user == null)
                 {
@@ -56,11 +56,11 @@ namespace Evsell.Busssiness.SqlServer
 
         }
 
-        public ResponseDto<Company> GetCompany(int Id)
+        public ResponseDto<Company> GetCompany(int id)
         {
             try
             {
-                Company company = dbContext.Companies.Find(Id);
+                Company company = dbContext.Companies.Find(id);
 
                 if (company == null)
                 {
@@ -75,11 +75,11 @@ namespace Evsell.Busssiness.SqlServer
             }
         }
 
-        public ResponseDto<HtmlEmailPage> GetHtmlPage(int Id)
+        public ResponseDto<HtmlEmailPage> GetHtmlPage(int id)
         {
             try
             {
-                HtmlEmailPage htmlEmailPage = dbContext.HtmlEmailPages.Find(Id);
+                HtmlEmailPage htmlEmailPage = dbContext.HtmlEmailPages.Find(id);
                 return new ResponseDto<HtmlEmailPage>().Success(htmlEmailPage);
             }
             catch (Exception ex)
@@ -88,11 +88,11 @@ namespace Evsell.Busssiness.SqlServer
             }
         }
 
-        public ResponseDto<Basket> GetBasket(int Id)
+        public ResponseDto<Basket> GetBasket(int id)
         {
             try
             {
-                Basket basket = dbContext.Baskets.Find(Id);
+                Basket basket = dbContext.Baskets.Find(id);
                 return new ResponseDto<Basket>().Success(basket);
             }
             catch (Exception ex)

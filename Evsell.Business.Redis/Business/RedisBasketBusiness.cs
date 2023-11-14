@@ -6,6 +6,8 @@ using Evsell.Busssiness.SqlServer.Bo.User;
 using Evsell.Busssiness.SqlServer.Business;
 using Evsell.Busssiness.SqlServer.Dtos;
 using Evsell.Busssiness.SqlServer.Models;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -65,23 +67,23 @@ namespace Evsell.Business.Redis.Business
 
             var productIds = redisBasketCriteriaBo.InvoiceProductDtos.Select(p => p.productId).ToList();
 
-            List<BasketBo> basketDtos = (from P in dbContext.Products
-                                         where productIds.Contains(P.Id)
-                                         select new BasketBo
-                                         {
-                                             ProductId = P.Id,
-                                             ProductName = P.Name,
-                                             Image = P.Image,
-                                             Price = P.Price,
-                                             // Diğer özellikleri buraya ekleyin
-                                         }).ToList();
+            List<RedisBasketBo> basketDtos = (from P in dbContext.Products
+                                              where productIds.Contains(P.Id)
+                                              select new RedisBasketBo
+                                              {
+                                                  ProductId = P.Id,
+                                                  ProductName = P.Name,
+                                                  Image = P.Image,
+                                                  Price = P.Price,
+                                                  // Diğer özellikleri buraya ekleyin
+                                              }).ToList();
 
             foreach (var item in redisBasketCriteriaBo.InvoiceProductDtos)
             {
                 var redisBasketBo = basketDtos.FirstOrDefault(p => p.ProductId == item.productId);
                 redisBasketBo.Qty = item.qty;
             }
-            
+
             BaseBusiness.SetData(key, basketDtos);
 
             return new ResponseDto().Success();
@@ -159,6 +161,30 @@ namespace Evsell.Business.Redis.Business
             {
                 return new ResponseDto<List<RedisBasketBo>>().Success(basketCriteriaBo);
             }
+        }
+
+        public ResponseDto Delete(RedisDeleteBasketBo redisDeleteBasketBo)
+        {
+            string key = redisDeleteBasketBo.UserId.ToString();
+
+            List<RedisBasketBo> redisBasketBos = BaseBusiness.GetData<List<RedisBasketBo>>(key);
+            
+            RedisBasketBo redisBasketBo = redisBasketBos.FirstOrDefault(p => p.ProductId == redisDeleteBasketBo.ProductId);
+
+            if (redisBasketBo == null)
+            {
+                return new ResponseDto().Failed("Product Not Found");
+            }
+
+            redisBasketBo.Qty -= redisDeleteBasketBo.Qty;
+
+            if (redisBasketBo.Qty == 0)
+            {
+                redisBasketBos.Remove(redisBasketBo);
+            }
+
+            BaseBusiness.SetData(key, redisBasketBos);
+            return new ResponseDto().Success();
         }
 
     }

@@ -97,7 +97,8 @@ namespace Evsell.App.WebApi
             CreateMap<ResponseDto<List<ProductCateDto>>, ResponseDto<List<ProductCateBo>>>().ReverseMap();
             CreateMap<ProductCateDto, ProductCateBo>().ReverseMap();
             CreateMap<RedisBasketCriteriaBo, BasketCriteriaDto>().ReverseMap();
-            CreateMap<RedisBasketBo,BasketBo>().ReverseMap();
+            CreateMap<RedisBasketBo, BasketBo>().ReverseMap();
+            CreateMap<RedisDeleteBasketBo, DeleteBasketDto>().ReverseMap();
             CreateMap<ResponseDto<List<RedisBasketBo>>, ResponseDto<List<BasketBo>>>().ReverseMap();
         }
     }

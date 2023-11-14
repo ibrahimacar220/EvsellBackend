@@ -41,6 +41,11 @@ namespace Evsell.Busssiness.SqlServer.Business
 
                 product = GetProduct(item.productId).Dto;
 
+                if (product == null)
+                {
+                    return new ResponseDto().Failed("Product Not Found");
+                }
+
                 var existingBasket = basketProductList.FirstOrDefault(p => p.ProductId == product.Id);
 
                 #region Logging               
@@ -189,6 +194,11 @@ namespace Evsell.Busssiness.SqlServer.Business
                 List<Basket> baskets = dbContext.Baskets.Where(b => b.UserId == deleteBasketBo.UserId).ToList();
 
                 Basket basket = baskets.FirstOrDefault(p => p.ProductId == deleteBasketBo.ProductId);
+
+                if (basket == null)
+                {
+                    return new ResponseDto().Failed("Product Not Found");
+                }
 
                 BasketLog basketLog = new BasketLog()
                 {

@@ -12,7 +12,7 @@ namespace Evsell.Business.Redis.Business.Interface
     public interface IRedisBasketBusiness
     {
         public ResponseDto Save(RedisBasketCriteriaBo redisBasketCriteriaBo);
-
         public ResponseDto<List<RedisBasketBo>> Get(string key);
+        public ResponseDto Delete(RedisDeleteBasketBo redisDeleteBasketBo);
     }
 }

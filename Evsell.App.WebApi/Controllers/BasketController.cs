@@ -35,18 +35,33 @@ namespace Evsell.App.WebApi.Controllers
 
             BasketCriteriaBo CriteriaBo = _mapper.Map<BasketCriteriaBo>(Dto);
           
-         
             RedisBasketCriteriaBo redisBasketCriteriaBo = _mapper.Map<RedisBasketCriteriaBo>(Dto);
-            _redisBasketBusiness.Save(redisBasketCriteriaBo);
 
-            return _basketBusiness.Save(CriteriaBo);
+            ResponseDto responseDto = _basketBusiness.Save(CriteriaBo);
+
+            if (responseDto.IsSuccess == true)
+            {
+                _redisBasketBusiness.Save(redisBasketCriteriaBo);
+            }
+
+            return responseDto;
         }
 
         [HttpDelete("Delete")]
         public ResponseDto Delete(DeleteBasketDto Dto)
         {
             DeleteBasketBo deleteBasketBo = _mapper.Map<DeleteBasketBo>(Dto);
-            return _basketBusiness.Delete(deleteBasketBo);
+
+            RedisDeleteBasketBo redisDeleteBasketBo = _mapper.Map<RedisDeleteBasketBo>(Dto);
+
+            ResponseDto responseDto = _basketBusiness.Delete(deleteBasketBo);
+
+            if (responseDto.IsSuccess == true)
+            {
+                _redisBasketBusiness.Delete(redisDeleteBasketBo);
+            }
+            
+            return responseDto;
         }
 
         [HttpGet("GetList")]
@@ -65,7 +80,6 @@ namespace Evsell.App.WebApi.Controllers
                 ResponseDto<List<BasketBo>> basketDto = _mapper.Map<ResponseDto<List<BasketBo>>>(basketBo);
                 return basketDto;
             }
-            
         }
     }
 }
